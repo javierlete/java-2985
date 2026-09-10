@@ -38,6 +38,10 @@ nav a {
     border-radius: .15rem;
 }
 
+nav li:not(:last-of-type) a {
+    border-bottom: 1px solid darkgray;
+}
+
 nav a:hover {
     background-color: white;
     color: black;
