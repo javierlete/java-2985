@@ -89,3 +89,26 @@ p {
     margin: 2rem 0;
     line-height: 1.5;
 }
+
+ol {
+  counter-reset: item;
+  list-style: none;
+}
+
+li {
+  counter-increment: item;
+}
+
+li::before {
+  content: counters(item, ".") ". ";
+}
+
+dt {
+    font-weight: bold;
+    margin: .25rem 0;
+}
+
+dd {
+    margin-left: 0;
+    margin-bottom: 1rem;
+}
