@@ -64,3 +64,28 @@ h1::after {
     content: '>';
 }
 
+pre {
+    background-color: lightgray;
+    
+    padding: .5rem;
+    border-radius: .15rem;
+    border: 1px solid gray;
+}
+
+strong {
+    font-variant: small-caps;
+    /* font-weight: normal; */
+}
+
+.destacado {
+    background-color: yellow;
+}
+
+.destacado.mucho {
+    padding: 0.5rem;
+}
+
+p {
+    margin: 2rem 0;
+    line-height: 1.5;
+}
