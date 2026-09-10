@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -13,7 +17,7 @@ a:hover {
     text-decoration: underline;
 }
 
-nav {
+nav, footer {
     background-color: black;
     color: white;
 
@@ -27,7 +31,8 @@ nav ul {
 
     text-align: center;
 
-    list-style: none; /* Para quitar las bolitas de la lista */
+    list-style: none;
+    /* Para quitar las bolitas de la lista */
 }
 
 nav a {
@@ -66,7 +71,7 @@ h1::after {
 
 pre {
     background-color: lightgray;
-    
+
     padding: .5rem;
     border-radius: .15rem;
     border: 1px solid gray;
@@ -91,16 +96,16 @@ p {
 }
 
 ol {
-  counter-reset: item;
-  list-style: none;
+    counter-reset: item;
+    list-style: none;
 }
 
-li {
-  counter-increment: item;
+ol li {
+    counter-increment: item;
 }
 
-li::before {
-  content: counters(item, ".") ". ";
+ol li::before {
+    content: counters(item, ".") ". ";
 }
 
 dt {
@@ -112,3 +117,91 @@ dd {
     margin-left: 0;
     margin-bottom: 1rem;
 }
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+caption {
+    font-variant: small-caps;
+
+    background-color: lightgray;
+}
+
+thead,
+tfoot {
+    background-color: lightgray;
+}
+
+tr:nth-of-type(even) td {
+    background-color: rgb(235, 235, 235);
+}
+
+td:nth-of-type(2) {
+    background-color: cyan;
+}
+
+caption,
+td,
+th {
+    border: 1px solid gray;
+
+    padding: 0.5rem;
+}
+
+th {
+    text-align: start;
+}
+
+figure,
+audio,
+video,
+iframe {
+    margin: 0;
+    padding: .5rem;
+    width: 100%;
+    border: 1px solid lightgray;
+    background-color: rgb(225, 255, 225);
+    border-radius: .15rem;
+}
+
+img {
+    width: 100%;
+}
+
+iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+fieldset {
+    border-radius: .15rem;
+
+    text-align: center;
+}
+
+input, button, select, textarea {
+    border-radius: .15rem;
+    border: 1px solid lightgray;
+    padding: .5rem;
+    margin: .5rem 0;
+
+    width: 100%;
+}
+
+input[type=checkbox], input[type=radio] {
+    width: auto;
+}
+
+aside ul {
+    text-align: center;
+    padding-left: 0;
+}
+
+aside ul li {
+    display: inline;
+}
+
