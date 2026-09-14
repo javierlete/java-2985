@@ -31,13 +31,13 @@ a {
     color: var(--color-enlace);
     font-weight: bold;
     text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-nav,
+body>nav,
 footer {
     background-color: var(--color-tinta);
     color: var(--color-fondo);
@@ -46,32 +46,34 @@ footer {
     padding: var(--margen-medio);
 }
 
-nav ul {
-    margin: 0;
-    padding: 0;
+body>nav {
+    ul {
+        margin: 0;
+        padding: 0;
 
-    text-align: center;
+        text-align: center;
 
-    list-style: none;
-    /* Para quitar las bolitas de la lista */
-}
+        list-style: none;
+        /* Para quitar las bolitas de la lista */
+    }
 
-nav a {
-    display: block;
-    color: white;
-    padding: var(--margen-medio);
+    a {
+        display: block;
+        color: var(--color-fondo);
+        padding: var(--margen-medio);
 
-    border-radius: var(--borde-redondeo);
-}
+        border-radius: var(--borde-redondeo);
 
-nav li:not(:last-of-type) a {
-    border-bottom: 1px solid darkgray;
-}
+        &:hover {
+            background-color: var(--color-fondo);
+            color: var(--color-tinta);
+            text-decoration: none;
+        }
+    }
 
-nav a:hover {
-    background-color: var(--color-fondo);
-    color: var(--color-tinta);
-    text-decoration: none;
+    li:not(:last-of-type) a {
+        border-bottom: 1px solid darkgray;
+    }
 }
 
 main {
@@ -80,14 +82,14 @@ main {
 
 h1 {
     text-align: center;
-}
 
-h1::before {
-    content: '<';
-}
+    &::before {
+        content: '<';
+    }
 
-h1::after {
-    content: '>';
+    &::after {
+        content: '>';
+    }
 }
 
 pre {
@@ -119,61 +121,63 @@ p {
 ol {
     counter-reset: item;
     list-style: none;
+
+    li {
+        counter-increment: item;
+
+        &::before {
+            content: counters(item, ".") ". ";
+        }
+    }
 }
 
-ol li {
-    counter-increment: item;
-}
+dl {
+    dt {
+        font-weight: bold;
+        margin: var(--margen-pequeno) 0;
+    }
 
-ol li::before {
-    content: counters(item, ".") ". ";
-}
-
-dt {
-    font-weight: bold;
-    margin: var(--margen-pequeno) 0;
-}
-
-dd {
-    margin-left: 0;
-    margin-bottom: var(--margen-grande);
+    dd {
+        margin-left: 0;
+        margin-bottom: var(--margen-grande);
+    }
 }
 
 table {
     width: 100%;
 
     border-collapse: collapse;
-}
 
-caption {
-    font-variant: small-caps;
+    caption {
+        font-variant: small-caps;
 
-    background-color: var(--color-fondo-suave);
-}
+        background-color: var(--color-fondo-suave);
+    }
 
-thead,
-tfoot {
-    background-color: var(--color-fondo-suave);
-}
+    thead,
+    tfoot {
+        background-color: var(--color-fondo-suave);
+    }
 
-tr:nth-of-type(even) td {
-    background-color: var(--color-fondo-mas-suave);
-}
+    tr:nth-of-type(even) td {
+        background-color: var(--color-fondo-mas-suave);
+    }
 
-td:nth-of-type(2) {
-    background-color: cyan;
-}
+    td:nth-of-type(2) {
+        background-color: cyan;
+    }
 
-caption,
-td,
-th {
-    border: 1px solid gray;
+    caption,
+    td,
+    th {
+        border: 1px solid gray;
 
-    padding: var(--margen-medio);
-}
+        padding: var(--margen-medio);
+    }
 
-th {
-    text-align: start;
+    th {
+        text-align: start;
+    }
 }
 
 figure,
@@ -221,11 +225,13 @@ input[type=radio] {
     width: auto;
 }
 
-aside ul {
-    text-align: center;
-    padding-left: 0;
-}
+aside {
+    ul {
+        text-align: center;
+        padding-left: 0;
 
-aside ul li {
-    display: inline;
+        li {
+            display: inline;
+        }
+    }
 }
