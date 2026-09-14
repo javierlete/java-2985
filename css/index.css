@@ -1,14 +1,34 @@
+:root {
+    --color-fondo: white;
+    --color-tinta: black;
+    --color-enlace: rgb(67, 95, 156);
+    --color-fondo-suave: lightgray;
+    --color-borde-suave: lightgray;
+    --color-fondo-mas-suave: rgb(235, 235, 235);
+
+    --font-general: Arial, Helvetica, sans-serif;
+
+    --borde-redondeo: .15rem;
+
+    --margen-pequeno: .25rem;
+    --margen-medio: .5rem;
+    --margen-grande: 1rem;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-general);
     margin: 0;
+
+    background-color: var(--color-fondo);
+    color: var(--color-tinta);
 }
 
 a {
-    color: rgb(67, 95, 156);
+    color: var(--color-enlace);
     font-weight: bold;
     text-decoration: none;
 }
@@ -17,12 +37,13 @@ a:hover {
     text-decoration: underline;
 }
 
-nav, footer {
-    background-color: black;
-    color: white;
+nav,
+footer {
+    background-color: var(--color-tinta);
+    color: var(--color-fondo);
 
-    border-bottom: 2px solid lightgray;
-    padding: .5rem;
+    border-bottom: 2px solid var(--color-fondo-suave);
+    padding: var(--margen-medio);
 }
 
 nav ul {
@@ -38,9 +59,9 @@ nav ul {
 nav a {
     display: block;
     color: white;
-    padding: .5rem;
+    padding: var(--margen-medio);
 
-    border-radius: .15rem;
+    border-radius: var(--borde-redondeo);
 }
 
 nav li:not(:last-of-type) a {
@@ -48,13 +69,13 @@ nav li:not(:last-of-type) a {
 }
 
 nav a:hover {
-    background-color: white;
-    color: black;
+    background-color: var(--color-fondo);
+    color: var(--color-tinta);
     text-decoration: none;
 }
 
 main {
-    padding: 1rem;
+    padding: var(--margen-grande);
 }
 
 h1 {
@@ -70,10 +91,10 @@ h1::after {
 }
 
 pre {
-    background-color: lightgray;
+    background-color: var(--color-fondo-suave);
 
-    padding: .5rem;
-    border-radius: .15rem;
+    padding: var(--margen-medio);
+    border-radius: var(--borde-redondeo);
     border: 1px solid gray;
 }
 
@@ -87,12 +108,12 @@ strong {
 }
 
 .destacado.mucho {
-    padding: 0.5rem;
+    padding: var(--margen-medio);
 }
 
 p {
     margin: 2rem 0;
-    line-height: 1.5;
+    line-height: calc(1rem + var(--margen-medio));
 }
 
 ol {
@@ -110,12 +131,12 @@ ol li::before {
 
 dt {
     font-weight: bold;
-    margin: .25rem 0;
+    margin: var(--margen-pequeno) 0;
 }
 
 dd {
     margin-left: 0;
-    margin-bottom: 1rem;
+    margin-bottom: var(--margen-grande);
 }
 
 table {
@@ -127,16 +148,16 @@ table {
 caption {
     font-variant: small-caps;
 
-    background-color: lightgray;
+    background-color: var(--color-fondo-suave);
 }
 
 thead,
 tfoot {
-    background-color: lightgray;
+    background-color: var(--color-fondo-suave);
 }
 
 tr:nth-of-type(even) td {
-    background-color: rgb(235, 235, 235);
+    background-color: var(--color-fondo-mas-suave);
 }
 
 td:nth-of-type(2) {
@@ -148,7 +169,7 @@ td,
 th {
     border: 1px solid gray;
 
-    padding: 0.5rem;
+    padding: var(--margen-medio);
 }
 
 th {
@@ -160,11 +181,11 @@ audio,
 video,
 iframe {
     margin: 0;
-    padding: .5rem;
+    padding: var(--margen-medio);
     width: 100%;
-    border: 1px solid lightgray;
+    border: 1px solid var(--color-borde-suave);
     background-color: rgb(225, 255, 225);
-    border-radius: .15rem;
+    border-radius: var(--borde-redondeo);
 }
 
 img {
@@ -172,27 +193,31 @@ img {
 }
 
 iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
 }
 
 fieldset {
-    border-radius: .15rem;
+    border-radius: var(--borde-redondeo);
 
     text-align: center;
 }
 
-input, button, select, textarea {
-    border-radius: .15rem;
-    border: 1px solid lightgray;
-    padding: .5rem;
-    margin: .5rem 0;
+input,
+button,
+select,
+textarea {
+    border-radius: var(--borde-redondeo);
+    border: 1px solid var(--color-borde-suave);
+    padding: var(--margen-medio);
+    margin: var(--margen-medio) 0;
 
     width: 100%;
 }
 
-input[type=checkbox], input[type=radio] {
+input[type=checkbox],
+input[type=radio] {
     width: auto;
 }
 
@@ -204,4 +229,3 @@ aside ul {
 aside ul li {
     display: inline;
 }
-
