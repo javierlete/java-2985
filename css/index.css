@@ -19,6 +19,7 @@
     --margen-pequeno: .25rem;
     --margen-medio: .5rem;
     --margen-grande: 1rem;
+    --margen-pagina: 10%;
 }
 
 * {
@@ -272,7 +273,7 @@ aside {
     color: var(--color-fondo);
     background-color: rgba(0, 0, 0, 0.75);
     border: 1px solid var(--color-fondo);
-    box-shadow: .25rem .25rem 0.75rem rgba(0,0,0, 0.5);
+    box-shadow: .25rem .25rem 0.75rem rgba(0, 0, 0, 0.5);
 
     border-radius: 100%;
     padding: var(--margen-pequeno);
@@ -281,4 +282,69 @@ aside {
 
     bottom: calc(var(--margen-grande) * 1.5);
     right: calc(var(--margen-grande) * 1.5);
+}
+
+@media (min-width: 768px) {
+    body>nav {
+        position: sticky;
+        top: 0;
+
+        z-index: 1;
+
+        ul {
+            display: flex;
+
+            justify-content: space-between;
+
+            li:not(:last-of-type) a {
+                border-bottom: 0;
+            }
+        }
+    }
+
+    section {
+        scroll-margin-top: calc(var(--margen-grande) * 4);
+    }
+
+    #arriba {
+        display: none;
+    }
+
+    main {
+        padding-left: var(--margen-pagina);
+        padding-right: var(--margen-pagina);
+    }
+
+    article {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: var(--margen-medio);
+
+        h1, section {
+            width: 100%;
+        }
+
+        #parrafos, #listas {
+            width: calc(50% - var(--margen-medio) / 2);
+        }
+    }
+
+    #formularios form:first-of-type {
+        display: flex;
+
+        fieldset {
+            width: 50%;
+        }
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        &>* {
+            margin: var(--margen-medio);
+        }
+    }
 }
