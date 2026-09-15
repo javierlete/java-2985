@@ -59,6 +59,8 @@ footer {
 
     border-bottom: 2px solid var(--color-fondo-suave);
     padding: var(--margen-medio);
+
+    text-align: center;
 }
 
 body>nav {
@@ -113,6 +115,8 @@ pre {
     padding: var(--margen-medio);
     border-radius: var(--borde-redondeo);
     border: 1px solid gray;
+
+    overflow: auto;
 }
 
 strong {
@@ -262,4 +266,19 @@ aside {
             color: var(--color-fondo);
         }
     }
+}
+
+#arriba a {
+    color: var(--color-fondo);
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 1px solid var(--color-fondo);
+    box-shadow: .25rem .25rem 0.75rem rgba(0,0,0, 0.5);
+
+    border-radius: 100%;
+    padding: var(--margen-pequeno);
+
+    position: fixed;
+
+    bottom: calc(var(--margen-grande) * 1.5);
+    right: calc(var(--margen-grande) * 1.5);
 }
