@@ -424,3 +424,65 @@ aside {
 
     }
 }
+
+@media (min-width: 2560px) {
+    #html {
+        grid-template-columns: 1fr 1fr 2fr;
+
+        grid-template-areas: 
+            "titulo         titulo          titulo"
+            "parrafos       listas          formularios"
+            "parrafos       tablas          formularios"
+            "parrafos       .               ."
+            "multimedia     multimedia      multimedia"
+        ;
+    }
+
+    #multimedia {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 
+            "titulo-multimedia  titulo-multimedia   titulo-multimedia"
+            "audio              audio               audio"
+            "figure             video               youtube"
+            "spotify            mapa                mapa"
+        ;
+
+        &>* {
+            width: 100%;
+        }
+
+        h2 {
+            grid-area: titulo-multimedia;
+        }
+
+        figure {
+            grid-area: figure;
+        }
+
+        audio {
+            grid-area: audio;
+        }
+
+        video {
+            grid-area: video;
+        }
+        
+        iframe:first-of-type {
+            grid-area: mapa;
+        }
+
+        iframe:nth-of-type(2) {
+            grid-area: spotify;
+
+            aspect-ratio: inherit;
+
+            height: 100%;
+        }
+
+        iframe:last-of-type {
+            grid-area: youtube;
+        }
+    }
+}
