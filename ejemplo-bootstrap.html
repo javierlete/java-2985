@@ -42,10 +42,10 @@
     </nav>
 
     <main class="container">
-        <article id="html">
+        <article id="html" class="row">
             <h1 class="text-center display-1">HTML</h1>
 
-            <section id="parrafos">
+            <section id="parrafos" class="col-sm-6 col-lg-5">
                 <h2>Párrafos</h2>
                 <pre class="bg-secondary-subtle p-2 rounded border">
 public class HolaMundo {
@@ -75,7 +75,7 @@ public class HolaMundo {
                 <p>Possimus similique consectetur blanditiis magni dolore distinctio officiis mollitia placeat!</p>
             </section>
 
-            <section id="listas">
+            <section id="listas" class="col-sm-6 col-lg-3">
                 <h2>Listas</h2>
 
                 <ul>
@@ -112,7 +112,7 @@ public class HolaMundo {
                 </dl>
             </section>
 
-            <section id="tablas">
+            <section id="tablas" class="col-lg-4">
                 <h2>Tablas</h2>
 
                 <table class="table table-bordered table-striped table-hover">
@@ -149,44 +149,50 @@ public class HolaMundo {
                 </table>
             </section>
 
-            <section id="multimedia">
+            <section id="multimedia" class="row">
                 <h2>Multimedia</h2>
 
-                <figure class="figure">
+                <figure class="figure col-lg-6 order-lg-1">
                     <img class="figure-img img-fluid rounded" src="imgs/html.jpg" alt="Foto de un código HTML en una pantalla">
                     <figcaption class="figure-caption">Código de HTML</figcaption>
                 </figure>
 
-                <audio class="w-100" controls src="audio/percusion.mp3"></audio>
+                <audio class="col-12 order-lg-0" controls src="audio/percusion.mp3"></audio>
 
-                <video class="w-100 rounded" controls src="video/conejo.mp4"></video>
+                <video class="col-12 col-lg-6 order-lg-1 rounded" controls src="video/conejo.mp4"></video>
 
-                <div class="ratio ratio-1x1">
-                    <iframe class="rounded"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.82099674788!2d-2.9162447243604155!3d43.256191330239844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1788884773882!5m2!1ses!2ses"
-                        allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <div class="col-12 col-lg-6 order-lg-1">
+                    <div class="ratio ratio-1x1">
+                        <iframe class="rounded"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.82099674788!2d-2.9162447243604155!3d43.256191330239844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1788884773882!5m2!1ses!2ses"
+                            allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
                 </div>
 
-                <div class="ratio ratio-4x3">
-                    <iframe class="rounded" data-testid="embed-iframe"
-                        src="https://open.spotify.com/embed/album/7MejfRSNnrpcLZIxkeZDqR?utm_source=generator&theme=0&si=78f3bad03ebf45e1"
-                        allowfullscreen=""
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        loading="lazy"></iframe>
+                <div class="col-12 col-lg-6 order-lg-1">
+                    <div class="ratio ratio-4x3">
+                        <iframe class="rounded" data-testid="embed-iframe"
+                            src="https://open.spotify.com/embed/album/7MejfRSNnrpcLZIxkeZDqR?utm_source=generator&theme=0&si=78f3bad03ebf45e1"
+                            allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy"></iframe>
+                    </div>
                 </div>
 
-                <div class="ratio ratio-16x9">
-                    <iframe class="rounded" src="https://www.youtube.com/embed/8fcSviC7cRM?si=uRN2XApgCRJSJuPu" title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="col-12 order-lg-1">
+                    <div class="ratio ratio-16x9">
+                        <iframe class="rounded" src="https://www.youtube.com/embed/8fcSviC7cRM?si=uRN2XApgCRJSJuPu" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </section>
 
             <section id="formularios">
                 <h2>Formularios</h2>
 
-                <form>
-                    <fieldset>
+                <form class="row">
+                    <fieldset class="col-md-6">
                         <legend>Usuario</legend>
 
                         <div class="row mb-2">
@@ -217,7 +223,7 @@ public class HolaMundo {
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset class="col-md-6">
                         <legend>Datos de contacto</legend>
 
                         <label class="form-label mb-2" for="telefono">Teléfono</label>
@@ -275,7 +281,7 @@ public class HolaMundo {
         </ul>
     </aside>
 
-    <footer class="text-center text-bg-dark p-2">
+    <footer class="text-center text-bg-dark p-2 d-flex flex-column text-center flex-sm-row align-items-center align-items-sm-baseline justify-content-between">
         <p>&copy;2026 Javier Lete</p>
         <ul class="nav justify-content-center" id="redes-sociales">
             <li class="nav-item"><a class="nav-link text-light" href="#"><i class="bi bi-facebook"></i></a></li>
@@ -284,7 +290,7 @@ public class HolaMundo {
             <li class="nav-item"><a class="nav-link text-light" href="#"><i class="bi bi-instagram"></i></a></li>
             <li class="nav-item"><a class="nav-link text-light" href="#"><i class="bi bi-twitter-x"></i></a></li>
         </ul>
-        <div id="arriba">
+        <div id="arriba" class="d-sm-none">
             <a class="bg-dark text-light shadow rounded-circle px-1 position-fixed bottom-0 end-0 me-3 mb-3" href="#"><i class="bi bi-arrow-up"></i></a>
         </div>
     </footer>
