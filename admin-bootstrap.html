@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es" class="h-100">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body class="h-100 d-flex flex-column justify-content-between">
+  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Administración</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="table-responsive">
+
+      <table class="table table-bordered table-striped table-hover">
+        <caption>Productos</caption>
+        <thead class="table-secondary">
+          <tr>
+            <th class="text-end">Id</th>
+            <th>Nombre</th>
+            <th class="text-end">Precio</th>
+            <th class="text-end">Stock</th>
+            <th>OPCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="text-end">1</th>
+            <td>Portátil</td>
+            <td class="text-end">1.234€</td>
+            <td class="text-end">5</td>
+            <td>
+              <a href="admin-formulario-bootstrap.html" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+              <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end">2</th>
+            <td>Monitor</td>
+            <td class="text-end">123€</td>
+            <td class="text-end">2</td>
+            <td>
+              <a href="admin-formulario-bootstrap.html" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+              <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="table-secondary">
+          <tr>
+            <td colspan="4"></td>
+            <td>
+              <a href="admin-formulario-bootstrap.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i></a>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </main>
+
+  <footer class="p-2 text-bg-dark">
+    &copy; Javier Lete
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
