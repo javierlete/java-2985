@@ -29,7 +29,7 @@
     </nav>
 
     <main class="container">
-        <form action="admin-bootstrap.html">
+        <form action="admin-bootstrap.html" class="needs-validation" novalidate>
             <div class="row mb-3">
                 <label for="id" class="col-sm-2 col-form-label">Id</label>
                 <div class="col">
@@ -40,18 +40,27 @@
                 <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col">
                     <input type="text" required maxlength="30" class="form-control" id="nombre">
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio y debe tener como máximo 30 caracteres
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="precio" class="col-sm-2 col-form-label">Precio</label>
                 <div class="col">
                     <input type="number" required min="0" step=".01" class="form-control" id="precio">
+                    <div class="invalid-feedback">
+                        El precio debe ser positivo y es obligatorio
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="stock" class="col-sm-2 col-form-label">Stock</label>
                 <div class="col">
                     <input type="number" required class="form-control" id="stock">
+                    <div class="invalid-feedback">
+                        El stock es obligatorio
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -60,6 +69,27 @@
                 </div>
             </div>
         </form>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
     </main>
 
     <footer class="p-2 text-bg-dark">
