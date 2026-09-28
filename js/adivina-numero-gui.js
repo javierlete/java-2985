@@ -40,13 +40,20 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
         }
 
         // D. MODIFICAR LA PANTALLA
-        const li = document.createElement('li');
+        if(acertado) {
+            resultados.innerHTML = '';
 
-        li.innerText = mensaje;
+            rojo.style.display = 'none';
+            verde.style.display = 'block';
+        } else {
+            const li = document.createElement('li');
+            
+            li.innerText = mensaje;
+            
+            resultados.appendChild(li);
 
-        resultados.appendChild(li);
-
-        rojo.style.display = acertado ? 'none' : 'block';
-        verde.style.display = acertado ? 'block' : 'none';
+            rojo.style.display = 'block';
+            verde.style.display = 'none';
+        }
     }
 });
