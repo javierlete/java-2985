@@ -10,10 +10,8 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
     // 1. RECOGER TODOS LOS ELEMENTOS CON LOS QUE NECESITAMOS INTERACTUAR
     const form = document.forms[0]; // document.querySelector('#form-adivina'); // document.getElementById('form-adivina');
     const inputNumero = form.numero; // document.querySelector('input[name=numero]');
-    const resultados = document.querySelector('#resultados'); // document.getElementById('resultados');
 
-    const verde = document.querySelector('#verde');
-    const rojo = document.querySelector('#rojo');
+    const cartel = document.querySelector('#cartel');
 
     // 2. ASOCIAR EVENTOS CON ACCIONES
     form.addEventListener('submit', procesarNumero); // Capturamos el evento de envío de formulario
@@ -40,20 +38,15 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
         }
 
         // D. MODIFICAR LA PANTALLA
-        if(acertado) {
-            resultados.innerHTML = '';
+        cartel.innerText = mensaje;
 
-            rojo.style.display = 'none';
-            verde.style.display = 'block';
+        if (acertado) {
+            cartel.classList.add('acertado');
+            cartel.classList.remove('fallo');
+            // cartel.className = 'acertado';
         } else {
-            const li = document.createElement('li');
-            
-            li.innerText = mensaje;
-            
-            resultados.appendChild(li);
-
-            rojo.style.display = 'block';
-            verde.style.display = 'none';
+            cartel.classList.add('fallo');
+            // cartel.className = 'fallo';
         }
     }
 });
