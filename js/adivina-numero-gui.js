@@ -12,6 +12,9 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
     const inputNumero = form.numero; // document.querySelector('input[name=numero]');
     const resultados = document.querySelector('#resultados'); // document.getElementById('resultados');
 
+    const verde = document.querySelector('#verde');
+    const rojo = document.querySelector('#rojo');
+
     // 2. ASOCIAR EVENTOS CON ACCIONES
     form.addEventListener('submit', procesarNumero); // Capturamos el evento de envío de formulario
 
@@ -25,6 +28,7 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
 
         // C. HACER ALGO CON LA INFORMACIÓN
         let mensaje;
+        let acertado = false;
 
         if (numeroAdivinar > numero) {
             mensaje = 'Es mayor que ' + numero;
@@ -32,6 +36,7 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
             mensaje = 'Es menor que ' + numero;
         } else {
             mensaje = 'Has acertado';
+            acertado = true;
         }
 
         // D. MODIFICAR LA PANTALLA
@@ -40,5 +45,8 @@ window.addEventListener('DOMContentLoaded', () => { // Esperamos a la carga del 
         li.innerText = mensaje;
 
         resultados.appendChild(li);
+
+        rojo.style.display = acertado ? 'none' : 'block';
+        verde.style.display = acertado ? 'block' : 'none';
     }
 });
