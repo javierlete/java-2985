@@ -1,0 +1,12 @@
+[
+    { "id": 1, "nombre": "Portátil", "precio": 1234.56 },
+    { "id": 2, "nombre": "Monitor 24 pulgadas", "precio": 189.99 },
+    { "id": 3, "nombre": "Teclado mecánico", "precio": 79.95 },
+    { "id": 4, "nombre": "Ratón inalámbrico", "precio": 29.90 },
+    { "id": 5, "nombre": "Auriculares Bluetooth", "precio": 59.99 },
+    { "id": 6, "nombre": "Webcam HD", "precio": 44.50 },
+    { "id": 7, "nombre": "Disco SSD 1 TB", "precio": 89.99 },
+    { "id": 8, "nombre": "Memoria USB 128 GB", "precio": 15.75 },
+    { "id": 9, "nombre": "Altavoz portátil", "precio": 39.95 },
+    { "id": 10, "nombre": "Alfombrilla para ratón", "precio": 12.49 }
+]
