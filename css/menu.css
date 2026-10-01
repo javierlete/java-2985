@@ -1,0 +1,15 @@
+#menu-hamburguesa {
+    overflow: hidden;
+    &.oculto {
+        /* display: none; */
+        max-height: 0;
+    
+        transition: max-height .5s ease-in-out;
+    }
+    
+    &:not(.oculto) {
+        max-height: 4rem;
+    
+        transition: max-height .5s ease-in-out;
+    }
+}
