@@ -1,12 +1,16 @@
 'use strict';
 
-const URL = 'json/amazonia.json';
+const URL = 'http://localhost:3001/productos/';
+
+let catalogo;
+let detalle;
 
 window.addEventListener('DOMContentLoaded', domCargado);
 
 async function domCargado() {
-    const catalogo = document.querySelector('#catalogo');
-    const detalle = document.querySelector('#detalle');
+    catalogo = document.querySelector('#catalogo');
+    detalle = document.querySelector('#detalle');
+
     const marco = document.querySelector('#marco-catalogo');
 
     detalle.style.display = 'none';
@@ -26,7 +30,7 @@ async function domCargado() {
                     <h5 class="card-title">${producto.nombre}</h5>
                     <p class="card-text">${producto.descripcion}</p>
                     <p>
-                        <a href="#" class="btn btn-primary">Ver detalle</a>
+                        <a href="javascript:mostrarDetalle(${producto.id})" class="btn btn-primary">Ver detalle</a>
                     </p>
                 </div>
                 <div class="card-footer">
@@ -37,4 +41,22 @@ async function domCargado() {
 
         marco.appendChild(div);
     }
+}
+
+async function mostrarDetalle(id) {
+    const respuesta = await fetch(URL + id);
+    const producto = await respuesta.json();
+
+    catalogo.style.display = 'none';
+    detalle.style.display = 'block';
+
+    document.querySelector('#detalle img').src = 'imgs/' + producto.imagen;
+    document.querySelector('#detalle .card-title').textContent = producto.nombre;
+    document.querySelector('#detalle .card-title + .card-text').textContent = producto.descripcion;
+    document.querySelector('#detalle small').textContent = producto.precio;
+}
+
+function mostrarCatalogo() {
+    catalogo.style.display = 'block';
+    detalle.style.display = 'none';
 }
