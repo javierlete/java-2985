@@ -1,3 +1,33 @@
 {
-  "productos": []
+    "productos": [
+        {
+            "id": 1,
+            "ean": "1234-1234-1234-1234",
+            "imagen": "portatil.jpg",
+            "nombre": "Portátil HP PX32",
+            "descripcion": "blablablabla",
+            "precio": 1234.56,
+            "caracteristicas": [
+                {
+                    "pantalla": "1080"
+                },
+                {
+                    "pulgadas": "15"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "ean": "4321-4321-4321-4321",
+            "imagen": "ventilador.jpg",
+            "nombre": "Ventilador",
+            "descripcion": "bleblebleble",
+            "precio": 12.56,
+            "caracteristicas": [
+                {
+                    "rpm": "50"
+                }
+            ]
+        }
+    ]
 }
