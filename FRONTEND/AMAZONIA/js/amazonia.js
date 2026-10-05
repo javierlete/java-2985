@@ -6,7 +6,8 @@ window.addEventListener('DOMContentLoaded', domCargado);
 
 async function domCargado() {
     // TODO: volver a mostrarCatalogo();
-    mostrarAdministracion();
+    mostrarCatalogo();
+    // mostrarAdministracion();
 }
 
 async function mostrarDetalle(id) {
@@ -75,7 +76,7 @@ async function mostrarAdministracion() {
             <td>${producto.precio}</td>
             <td>
                 <a href="" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
-                <a href="" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
+                <a href="javascript:borrarProducto(${producto.id})" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
             </td>`;
         
         tbody.appendChild(tr);
@@ -92,4 +93,8 @@ function mostrar(idSeccion) {
     // const seccionMostrar = document.getElementById(idSeccion);
     const seccionMostrar = document.querySelector('#' + idSeccion);
     seccionMostrar.classList.remove('d-none');
+}
+
+async function borrarProducto(id) {
+    const respuesta = await fetch(URL_PRODUCTOS + id, { method: 'DELETE' });
 }
