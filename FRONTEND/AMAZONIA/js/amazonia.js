@@ -1,30 +1,41 @@
 'use strict';
 
-const URL = 'http://localhost:3001/productos/';
-
-let catalogo;
-let detalle;
+const URL_PRODUCTOS = 'http://localhost:3001/productos/';
 
 window.addEventListener('DOMContentLoaded', domCargado);
 
 async function domCargado() {
-    catalogo = document.querySelector('#catalogo');
-    detalle = document.querySelector('#detalle');
+    // TODO: volver a mostrarCatalogo();
+    mostrarAdministracion();
+}
 
+async function mostrarDetalle(id) {
+    const respuesta = await fetch(URL_PRODUCTOS + id);
+    const producto = await respuesta.json();
+
+    mostrar('detalle');
+
+    document.querySelector('#detalle img').src = 'imgs/' + producto.imagen;
+    document.querySelector('#detalle .card-title').textContent = producto.nombre;
+    document.querySelector('#detalle .card-title + .card-text').textContent = producto.descripcion;
+    document.querySelector('#detalle small').textContent = producto.precio;
+}
+
+async function mostrarCatalogo() {
     const marco = document.querySelector('#marco-catalogo');
 
-    detalle.style.display = 'none';
+    marco.innerHTML = '';
 
-    const respuesta = await fetch(URL);
+    const respuesta = await fetch(URL_PRODUCTOS);
     const productos = await respuesta.json();
 
-    for(const producto of productos) {
+    for (const producto of productos) {
         const div = document.createElement('div');
 
         div.className = 'col';
 
         div.innerHTML = `
-            <div class="card h-100">
+            <article class="card h-100">
                 <img src="imgs/${producto.imagen}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${producto.nombre}</h5>
@@ -36,27 +47,49 @@ async function domCargado() {
                 <div class="card-footer">
                     <small class="text-body-secondary">${producto.precio}</small>
                 </div>
-            </div>
+            </article>
         `;
 
         marco.appendChild(div);
     }
+
+    mostrar('catalogo');
 }
 
-async function mostrarDetalle(id) {
-    const respuesta = await fetch(URL + id);
-    const producto = await respuesta.json();
+async function mostrarAdministracion() {
+    mostrar('administracion');
 
-    catalogo.style.display = 'none';
-    detalle.style.display = 'block';
+    const tbody = document.querySelector('#administracion tbody');
 
-    document.querySelector('#detalle img').src = 'imgs/' + producto.imagen;
-    document.querySelector('#detalle .card-title').textContent = producto.nombre;
-    document.querySelector('#detalle .card-title + .card-text').textContent = producto.descripcion;
-    document.querySelector('#detalle small').textContent = producto.precio;
+    tbody.innerHTML = '';
+
+    const respuesta = await fetch(URL_PRODUCTOS);
+    const productos = await respuesta.json();
+
+    for (const producto of productos) {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+            <th>${producto.id}</th>
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}</td>
+            <td>
+                <a href="" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
+                <a href="" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
+            </td>`;
+        
+        tbody.appendChild(tr);
+    }
 }
 
-function mostrarCatalogo() {
-    catalogo.style.display = 'block';
-    detalle.style.display = 'none';
+function mostrar(idSeccion) {
+    const secciones = document.querySelectorAll('main>section');
+
+    for (const seccion of secciones) {
+        seccion.classList.add('d-none');
+    }
+
+    // const seccionMostrar = document.getElementById(idSeccion);
+    const seccionMostrar = document.querySelector('#' + idSeccion);
+    seccionMostrar.classList.remove('d-none');
 }
