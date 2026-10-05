@@ -108,15 +108,17 @@ async function borrarProducto(id) {
 
 async function mostrarFormulario(id) {
     mostrar('formulario');
-
+    
+    const form = document.querySelector('#formulario form');
+    
     if (!id) {
+        form.reset();
         return;
     }
 
     const respuesta = await fetch(URL_PRODUCTOS + id);
     const producto = await respuesta.json();
 
-    const form = document.querySelector('#formulario form');
 
     form['id-producto'].value = producto.id;
     form.nombre.value = producto.nombre;
@@ -126,3 +128,47 @@ async function mostrarFormulario(id) {
     form.ean.value = producto.ean;
 }
 
+async function guardar() {
+    const form = document.querySelector('#formulario form');
+
+    const producto = {
+        id: parseInt(form['id-producto'].value),
+        nombre: form.nombre.value,
+        imagen: form.imagen.value,
+        ean: form.ean.value,
+        descripcion: form.descripcion.value,
+        precio: parseFloat(form.precio.value)
+    }
+
+    console.log(producto);
+
+    if (producto.id) {
+        // PUT
+        const respuesta = await fetch(URL_PRODUCTOS + producto.id, {
+            method: 'PUT',
+            body: JSON.stringify(producto),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        });
+
+        const productoModificado = await respuesta.json();
+
+        console.log(productoModificado);
+    } else {
+        // POST
+        const respuesta = await fetch(URL_PRODUCTOS, {
+            method: 'POST',
+            body: JSON.stringify(producto),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        });
+
+        const productoInsertado = await respuesta.json();
+
+        console.log(productoInsertado);
+    }
+
+    mostrarAdministracion();
+}
