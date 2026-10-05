@@ -6,8 +6,7 @@ window.addEventListener('DOMContentLoaded', domCargado);
 
 async function domCargado() {
     // TODO: volver a mostrarCatalogo();
-    mostrarCatalogo();
-    // mostrarAdministracion();
+    mostrarFormulario();
 }
 
 async function mostrarDetalle(id) {
@@ -75,7 +74,7 @@ async function mostrarAdministracion() {
             <td>${producto.nombre}</td>
             <td>${producto.precio}</td>
             <td>
-                <a href="" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
+                <a href="javascript:mostrarFormulario(${producto.id})" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
                 <a href="javascript:borrarProducto(${producto.id})" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
             </td>`;
 
@@ -106,3 +105,24 @@ async function borrarProducto(id) {
         mostrarAdministracion();
     }
 }
+
+async function mostrarFormulario(id) {
+    mostrar('formulario');
+
+    if (!id) {
+        return;
+    }
+
+    const respuesta = await fetch(URL_PRODUCTOS + id);
+    const producto = await respuesta.json();
+
+    const form = document.querySelector('#formulario form');
+
+    form['id-producto'].value = producto.id;
+    form.nombre.value = producto.nombre;
+    form.imagen.value = producto.imagen;
+    form.descripcion.value = producto.descripcion;
+    form.precio.value = producto.precio;
+    form.ean.value = producto.ean;
+}
+

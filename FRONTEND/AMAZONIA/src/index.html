@@ -84,14 +84,14 @@
                     </thead>
 
                     <tbody>
-                        
+
                     </tbody>
 
                     <tfoot class="table-secondary">
                         <tr>
                             <td colspan="3"></td>
                             <td>
-                                <a href="" class="btn btn-sm btn-primary">
+                                <a href="javascript:mostrarFormulario()" class="btn btn-sm btn-primary">
                                     <i class="bi bi-plus-lg"></i>
                                 </a>
                             </td>
@@ -99,6 +99,54 @@
                     </tfoot>
                 </table>
             </div>
+        </section>
+
+        <section id="formulario">
+            <h1>Formulario producto</h1>
+
+            <form>
+                <div class="row mb-3">
+                    <label for="id" class="col-sm-2 col-form-label">Id</label>
+                    <div class="col-sm">
+                        <input type="number" readonly class="form-control" id="id" name="id-producto">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="imagen" name="imagen">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="ean" class="col-sm-2 col-form-label">EAN</label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="ean" name="ean">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                    <div class="col-sm-10">
+                        <input type="number" step=".01" class="form-control" id="precio" name="precio">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+                    <div class="col-sm">
+                        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="offset-sm-2 col-sm">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i></button>
+                    </div>
+                </div>
+            </form>
         </section>
     </main>
 
