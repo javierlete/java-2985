@@ -78,7 +78,7 @@ async function mostrarAdministracion() {
                 <a href="" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
                 <a href="javascript:borrarProducto(${producto.id})" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
             </td>`;
-        
+
         tbody.appendChild(tr);
     }
 }
@@ -96,5 +96,13 @@ function mostrar(idSeccion) {
 }
 
 async function borrarProducto(id) {
+    if (!confirm(`¿Estás seguro de que quieres borrar el producto ${id}?`)) {
+        return;
+    }
+
     const respuesta = await fetch(URL_PRODUCTOS + id, { method: 'DELETE' });
+
+    if (respuesta.ok) {
+        mostrarAdministracion();
+    }
 }
