@@ -36,6 +36,22 @@
       "ean": "1234",
       "descripcion": "El superratón",
       "precio": 12.34
+    },
+    {
+      "nombre": "Teclado",
+      "imagen": "raton.jpg",
+      "ean": "2345",
+      "descripcion": "SuperTeclado",
+      "precio": 23.45,
+      "id": 4
+    },
+    {
+      "nombre": "Nuevo",
+      "imagen": "adfg",
+      "ean": "1234",
+      "descripcion": "sgcfnjcvhmjk",
+      "precio": 1234,
+      "id": 5
     }
   ]
 }

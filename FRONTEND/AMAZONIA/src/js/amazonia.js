@@ -5,7 +5,8 @@ const URL_PRODUCTOS = 'http://localhost:3001/productos/';
 window.addEventListener('DOMContentLoaded', domCargado);
 
 function domCargado() {
-    mostrarCatalogo();
+    // TODO: mostrarCatalogo();
+    mostrarFormulario();
 }
 
 async function mostrarDetalle(id) {
