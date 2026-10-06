@@ -4,9 +4,8 @@ const URL_PRODUCTOS = 'http://localhost:3001/productos/';
 
 window.addEventListener('DOMContentLoaded', domCargado);
 
-async function domCargado() {
-    // TODO: volver a mostrarCatalogo();
-    mostrarFormulario();
+function domCargado() {
+    mostrarCatalogo();
 }
 
 async function mostrarDetalle(id) {
@@ -131,19 +130,22 @@ async function mostrarFormulario(id) {
 async function guardar() {
     const form = document.querySelector('#formulario form');
 
+    const id = parseInt(form['id-producto'].value);
+
     const producto = {
-        id: parseInt(form['id-producto'].value),
         nombre: form.nombre.value,
         imagen: form.imagen.value,
         ean: form.ean.value,
         descripcion: form.descripcion.value,
         precio: parseFloat(form.precio.value)
-    }
+    };
 
     console.log(producto);
 
-    if (producto.id) {
+    if (id) {
         // PUT
+        producto.id = id;
+        
         const respuesta = await fetch(URL_PRODUCTOS + producto.id, {
             method: 'PUT',
             body: JSON.stringify(producto),
