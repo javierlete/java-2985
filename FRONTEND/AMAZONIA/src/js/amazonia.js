@@ -6,7 +6,22 @@ window.addEventListener('DOMContentLoaded', domCargado);
 
 function domCargado() {
     // TODO: mostrarCatalogo();
-    mostrarFormulario();
+    mostrarAdministracion();
+
+    const confirmacion = document.querySelector('#confirmacion');
+    
+    if (confirmacion) {
+        confirmacion.addEventListener('show.bs.modal', event => {
+            const ahref = event.relatedTarget;
+            const id = ahref.getAttribute('data-jl-id');
+
+            const modalBody = confirmacion.querySelector('.modal-body')
+
+            modalBody.textContent = `¿Estás seguro de que quieres borrar el producto ${id}?`;
+
+            document.querySelector('#si').onclick = () => borrarProducto(id);
+        })
+    }
 }
 
 async function mostrarDetalle(id) {
@@ -26,6 +41,7 @@ async function mostrarCatalogo() {
 
     marco.innerHTML = '';
 
+    // TODO: Gestionar el posible error de que no está arrancado el json-server
     const respuesta = await fetch(URL_PRODUCTOS);
     const productos = await respuesta.json();
 
@@ -75,7 +91,7 @@ async function mostrarAdministracion() {
             <td>${producto.precio}</td>
             <td>
                 <a href="javascript:mostrarFormulario(${producto.id})" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
-                <a href="javascript:borrarProducto(${producto.id})" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
+                <a data-bs-toggle="modal" data-bs-target="#confirmacion" href="#" data-jl-id="${producto.id}" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
             </td>`;
 
         tbody.appendChild(tr);
@@ -95,10 +111,6 @@ function mostrar(idSeccion) {
 }
 
 async function borrarProducto(id) {
-    if (!confirm(`¿Estás seguro de que quieres borrar el producto ${id}?`)) {
-        return;
-    }
-
     const respuesta = await fetch(URL_PRODUCTOS + id, { method: 'DELETE' });
 
     if (respuesta.ok) {
@@ -108,9 +120,9 @@ async function borrarProducto(id) {
 
 async function mostrarFormulario(id) {
     mostrar('formulario');
-    
+
     const form = document.querySelector('#formulario form');
-    
+
     if (!id) {
         form.reset();
         return;
@@ -146,7 +158,7 @@ async function guardar() {
     if (id) {
         // PUT
         producto.id = id;
-        
+
         const respuesta = await fetch(URL_PRODUCTOS + producto.id, {
             method: 'PUT',
             body: JSON.stringify(producto),
