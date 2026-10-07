@@ -30,6 +30,8 @@ class LabelInput extends HTMLElement {
                     </div>`;
                 break;
             default:
+                // TODO: Revisar la relación de label for e id o name
+
                 this.innerHTML = `
                     <div class="row mb-3">
                         <label for="${id}" class="col-sm-2 col-form-label">${texto}</label>
