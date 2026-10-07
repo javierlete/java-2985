@@ -7,21 +7,6 @@ window.addEventListener('DOMContentLoaded', domCargado);
 function domCargado() {
     // TODO: mostrarCatalogo();
     mostrarAdministracion();
-
-    const confirmacion = document.querySelector('#confirmacion');
-    
-    if (confirmacion) {
-        confirmacion.addEventListener('show.bs.modal', event => {
-            const ahref = event.relatedTarget;
-            const id = ahref.getAttribute('data-jl-id');
-
-            const modalBody = confirmacion.querySelector('.modal-body')
-
-            modalBody.textContent = `¿Estás seguro de que quieres borrar el producto ${id}?`;
-
-            document.querySelector('#si').onclick = () => borrarProducto(id);
-        })
-    }
 }
 
 async function mostrarDetalle(id) {
@@ -91,7 +76,13 @@ async function mostrarAdministracion() {
             <td>${producto.precio}</td>
             <td>
                 <a href="javascript:mostrarFormulario(${producto.id})" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
-                <a data-bs-toggle="modal" data-bs-target="#confirmacion" href="#" data-jl-id="${producto.id}" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
+                <a 
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmacion"
+                    data-jl-modal-texto="¿Estás seguro de que quieres borrar ${producto.nombre}?"
+                    data-jl-modal-si="borrarProducto(${producto.id})"
+                    href="#"
+                    class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></a>
             </td>`;
 
         tbody.appendChild(tr);

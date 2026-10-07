@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <script defer src="js/jl-labelinput.js"></script>
+    <script src="js/jl-modal.js"></script>
 </head>
 
 <body class="h-100 d-flex flex-column justify-content-between">
@@ -103,25 +104,6 @@
                     </tfoot>
                 </table>
             </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="confirmacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="confirmacion" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmación</h1>
-                        </div>
-                        <div class="modal-body">
-                            ¿Estás seguro de querer borrar este producto?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            <button id="si" type="button" class="btn btn-primary" data-bs-dismiss="modal">Sí</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section id="formulario">
@@ -147,6 +129,8 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="js/amazonia.js"></script>
+
+    <jl-modal id-modal="confirmacion"></jl-modal>
 </body>
 
 </html>
