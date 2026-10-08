@@ -1,0 +1,118 @@
+{
+    "comercios": [
+        {
+            "id": 1,
+            "nombre_es": "Ipartek",
+            "nombre_eu": "Iparteka",
+            "telefono": "941231234",
+            "horario_es": "De 15:00 a 20:00",
+            "horario_eu": "15:00 20:00ra",
+            "foto": "ipartek.jpg",
+            "latitud": 43.2565092,
+            "longitud": -2.9137749
+        },
+        {
+            "id": 2,
+            "nombre_es": "Panadería Gure Ogia",
+            "nombre_eu": "Gure Ogia Okindegia",
+            "telefono": "944123456",
+            "horario_es": "De 08:00 a 14:00 y de 17:00 a 20:00",
+            "horario_eu": "08:00etatik 14:00etara eta 17:00etatik 20:00etara",
+            "foto": "gure-ogia.jpg",
+            "latitud": 43.208214,
+            "longitud": -2.901842
+        },
+        {
+            "id": 3,
+            "nombre_es": "Restaurante Txoko",
+            "nombre_eu": "Txoko Jatetxea",
+            "telefono": "944234567",
+            "horario_es": "De 13:00 a 16:00 y de 20:00 a 23:00",
+            "horario_eu": "13:00etatik 16:00etara eta 20:00etatik 23:00etara",
+            "foto": "txoko.jpg",
+            "latitud": 43.206918,
+            "longitud": -2.904127
+        },
+        {
+            "id": 4,
+            "nombre_es": "Arropa Denda",
+            "nombre_eu": "Arropa Denda",
+            "telefono": "944345678",
+            "horario_es": "De 10:00 a 13:30 y de 16:30 a 20:00",
+            "horario_eu": "10:00etatik 13:30era eta 16:30etik 20:00etara",
+            "foto": "arropa-denda.jpg",
+            "latitud": 43.209105,
+            "longitud": -2.902316
+        }
+    ],
+    "comercios_categorias": [
+        {
+            "comercios_id": 1,
+            "categoria_id": 1
+        },
+        {
+            "comercios_id": 2,
+            "categoria_id": 2
+        },
+        {
+            "comercios_id": 3,
+            "categoria_id": 3
+        },
+        {
+            "comercios_id": 4,
+            "categoria_id": 4
+        }
+    ],
+    "categorias": [
+        {
+            "id": 1,
+            "nombre_es": "Formación",
+            "nombre_eu": "Ikastaroa",
+            "icono": "formacion.svg"
+        },
+        {
+            "id": 2,
+            "nombre_es": "Alimentación",
+            "nombre_eu": "Elikadura",
+            "icono": "alimentacion.svg"
+        },
+        {
+            "id": 3,
+            "nombre_es": "Restauración",
+            "nombre_eu": "Ostalaritza",
+            "icono": "restauracion.svg"
+        },
+        {
+            "id": 4,
+            "nombre_es": "Moda",
+            "nombre_eu": "Moda",
+            "icono": "moda.svg"
+        }
+    ],
+    "noticias": [
+        {
+            "id": 1,
+            "titulo_es": "Noticia nueva",
+            "titulo_eu": "Noticia Euskaraz",
+            "fecha": "2026-10-08",
+            "contenido_es": "lorem",
+            "contenido_eu": "lorena"
+        },
+        {
+            "id": 2,
+            "titulo_es": "Nuevos comercios se unen a la asociación",
+            "titulo_eu": "Saltoki berriak elkartean sartu dira",
+            "fecha": "2026-10-05",
+            "contenido_es": "Damos la bienvenida a nuevos comercios locales que se incorporan a nuestra asociación.",
+            "contenido_eu": "Ongi etorria ematen diegu gure elkartean sartu diren tokiko saltoki berriei."
+        },
+        {
+            "id": 3,
+            "titulo_es": "Apoya al comercio local",
+            "titulo_eu": "Tokiko merkataritza babestu",
+            "fecha": "2026-09-28",
+            "contenido_es": "Comprar en los establecimientos del barrio ayuda a mantener viva nuestra comunidad.",
+            "contenido_eu": "Auzoko saltokietan erosiz, gure komunitatea bizirik mantentzen laguntzen duzu."
+        }
+    ]
+}
