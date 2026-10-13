@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi primera aplicación React</title>
+
+    <!-- React y ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Transforma JSX en JavaScript en el navegador -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <main id="root"></main>
+
+    <script type="text/babel">
+        function App() {
+            return (
+                <>
+                    <Titulo texto="Prueba" />
+                    <Titulo texto="Otra prueba" />
+                    <Boton etiqueta="Púlsame" />
+                    <footer>&copy;2026 Javier Lete</footer>
+                </>
+            );
+        }
+
+        function Titulo({ texto }) {
+            return <h1>{texto}</h1>;
+        }
+
+        function Boton({ etiqueta }) {
+            return <button onClick={() => alert('Hola')}>{etiqueta}</button>;
+        }
+
+        const root = ReactDOM.createRoot(
+            document.getElementById("root")
+        );
+
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
