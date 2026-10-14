@@ -2,7 +2,7 @@ export function Listado({ elementos }) {
     return (
         <>
             <ul>
-                {elementos.map(e => <li>{e}</li>)}
+                {elementos.map(e => <li key={e}>{e}</li>)}
             </ul>
         </>
     )
