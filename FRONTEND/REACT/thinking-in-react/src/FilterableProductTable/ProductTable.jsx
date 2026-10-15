@@ -2,7 +2,9 @@ import './ProductTable.css';
 import { ProductCategoryRow } from "./ProductTable/ProductCategoryRow";
 import { ProductRow } from "./ProductTable/ProductRow";
 
-export function ProductTable() {
+export function ProductTable({ products }) {
+    let lastCategory;
+
     return (
         <>
             <table>
@@ -13,14 +15,13 @@ export function ProductTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    <ProductCategoryRow category="Fruits" />
-                    <ProductRow product={{ category: "Fruits", price: "$1", stocked: true, name: "Apple" }} />
-                    <ProductRow product={{ category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" }} />
-                    <ProductRow product={{ category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" }} />
-                    <ProductCategoryRow category="Vegetables" />
-                    <ProductRow product={{ category: "Vegetables", price: "$2", stocked: true, name: "Spinach" }} />
-                    <ProductRow product={{ category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" }} />
-                    <ProductRow product={{ category: "Vegetables", price: "$1", stocked: true, name: "Peas" }} />
+                    {products.map(product =>
+                        <>
+                            {product.category !== lastCategory &&
+                                <ProductCategoryRow key={product.category} category={lastCategory = product.category} />}
+                            <ProductRow key={product.name} product={product} />
+                        </>
+                    )}
                 </tbody>
             </table>
         </>

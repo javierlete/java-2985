@@ -1,11 +1,11 @@
 import { ProductTable } from "./FilterableProductTable/ProductTable";
 import { SearchBar } from "./FilterableProductTable/SearchBar";
 
-export function FilterableProductTable() {
+export function FilterableProductTable({ products }) {
     return (
         <>
-            <SearchBar/>
-            <ProductTable/>
+            <SearchBar />
+            <ProductTable products={products} />
         </>
     );
 }
