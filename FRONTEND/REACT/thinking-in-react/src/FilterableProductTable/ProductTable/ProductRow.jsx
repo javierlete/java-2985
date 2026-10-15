@@ -1,10 +1,10 @@
 import './ProductRow.css';
 
-export function ProductRow() {
+export function ProductRow({ product }) {
     return (
         <>
             <tr>
-                <td className="nostock">PRODUCTO</td><td>$PRECIO</td>
+                <td className={!product.stocked ? 'nostock' : ''}>{product.name}</td><td>{product.price}</td>
             </tr>
         </>
     );

@@ -1,10 +1,10 @@
 import './ProductCategoryRow.css';
 
-export function ProductCategoryRow() {
+export function ProductCategoryRow({ category }) {
     return (
         <>
             <tr>
-                <th className="category" colSpan="2">CATEGORY</th>
+                <th className="category" colSpan="2">{category}</th>
             </tr>
         </>
     );

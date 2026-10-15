@@ -13,13 +13,14 @@ export function ProductTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    <ProductCategoryRow />
-                    <ProductRow />
-                    <ProductRow />
-                    <ProductRow />
-                    <ProductCategoryRow />
-                    <ProductRow />
-                    <ProductRow />
+                    <ProductCategoryRow category="Fruits" />
+                    <ProductRow product={{ category: "Fruits", price: "$1", stocked: true, name: "Apple" }} />
+                    <ProductRow product={{ category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" }} />
+                    <ProductRow product={{ category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" }} />
+                    <ProductCategoryRow category="Vegetables" />
+                    <ProductRow product={{ category: "Vegetables", price: "$2", stocked: true, name: "Spinach" }} />
+                    <ProductRow product={{ category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" }} />
+                    <ProductRow product={{ category: "Vegetables", price: "$1", stocked: true, name: "Peas" }} />
                 </tbody>
             </table>
         </>
