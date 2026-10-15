@@ -1,0 +1,11 @@
+.nostock {
+  color: red;
+}
+
+th:first-child, td:first-child {
+  text-align: start;
+}
+
+th:last-child, td:last-child {
+  text-align: end;
+}
