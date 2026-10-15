@@ -1,0 +1,23 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nostock {
+  color: red;
+}
+
+table, input[type=search] {
+  width: 100%;
+}
+
+th:first-child, td:first-child {
+  text-align: start;
+}
+
+th:last-child, td:last-child {
+  text-align: end;
+}
+
+th.category {
+  text-align: center;
+}
