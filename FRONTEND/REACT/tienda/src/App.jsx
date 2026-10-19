@@ -1,13 +1,15 @@
-import './App.css'
-import { Contenido } from './App/Contenido'
-import { Menu } from './App/Menu'
-import { Pie } from './App/Pie'
+import { Outlet } from 'react-router';
+import './App.css';
+import { Menu } from './App/Menu';
+import { Pie } from './App/Pie';
 
 function App() {
   return (
     <>
       <Menu />
-      <Contenido />
+      <main className="container my-3">
+        <Outlet />
+      </main>
       <Pie />
     </>
   )

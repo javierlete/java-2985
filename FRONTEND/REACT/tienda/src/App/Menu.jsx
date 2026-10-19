@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 export function Menu() {
     return (
         <nav className="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
@@ -9,12 +11,12 @@ export function Menu() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-sm-0">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Principal</a>
+                            <NavLink className="nav-link" to="/" end>Principal</NavLink>
                         </li>
                     </ul>
                     <ul className="navbar-nav mb-2 mb-sm-0">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Administración</a>
+                            <NavLink className="nav-link" to="/admin" end>Administración</NavLink>
                         </li>
                     </ul>
                 </div>
