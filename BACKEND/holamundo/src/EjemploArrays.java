@@ -10,7 +10,7 @@ void main() {
 
 //	arr = new int[10];
 
-	System.out.println(Arrays.toString(arr));
+	IO.println(Arrays.toString(arr));
 
 	for (int i = 0; i < arr.length; i++) {
 		IO.print(arr[i] + " ");
