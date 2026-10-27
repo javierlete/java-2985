@@ -1,5 +1,5 @@
 private static final String FORMATO = "%-10s %-20s\n";
-private static final Asistente[] asistentes = new Asistente[2];
+private static final ArrayList<Asistente> asistentes = new ArrayList<Asistente>();
 
 void main() {
 	System.setProperty("stdin.encoding", "UTF-8");
@@ -41,11 +41,12 @@ private void procesarOpcion(int opcion) {
 }
 
 private void recibirAsistentes() {
-	int indice = 0;
-
+	String otro;
+	
 	do {
-		asistentes[indice++] = pedirAsistente();
-	} while (indice < asistentes.length);
+		asistentes.add(pedirAsistente());
+		otro = IO.readln("¿Quieres introducir 9? [S/n] ");
+	} while (!otro.equals("n"));
 
 	IO.println("Ya no se admiten más asistentes");
 }
