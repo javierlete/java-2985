@@ -10,7 +10,7 @@ import java.util.ArrayList;
 // TODO: Refactorizar para seguir todavía más el principio DRY
 
 public class AsistenteDao {
-	private static final String JDBC_URL = "jdbc:sqlit:asistentes.db";
+	private static final String JDBC_URL = "jdbc:sqlite:asistentes.db";
 	private static final String JDBC_USER = "";
 	private static final String JDBC_PASS = "";
 
@@ -58,6 +58,9 @@ public class AsistenteDao {
 
 		} catch (SQLException e) {
 			System.out.println("No se ha podido hacer la inserción");
+			
+			e.printStackTrace();
+			
 			throw e;
 		}
 	}
@@ -87,7 +90,8 @@ public class AsistenteDao {
 	}
 
 	private static PreparedStatement crearSentencia(String sql) throws SQLException {
-		try (Connection con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS)) {
+		try {
+			Connection con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
 			return con.prepareStatement(sql);
 		} catch (SQLException e) {
 			System.out.println("No se ha podido conectar a la base de datos");
