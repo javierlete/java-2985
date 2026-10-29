@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class AsistenteConsola {
 	public static void main(String[] args) throws SQLException {
-		AsistenteDao.insertar(new AsistenteDto(null, "Nuevo", "Nuevez"));
+		AsistenteDao.insertar(new AsistenteDto(null, "Nuevo", "Nuevez'); DROP TABLE asistentes; -- "));
 		listado();
 		
 		AsistenteDao.modificar(new AsistenteDto(2L, "Modificado", "Modificadez"));
