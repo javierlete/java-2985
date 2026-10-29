@@ -13,96 +13,86 @@ public class AsistenteDao {
 	private static final String JDBC_URL = "jdbc:sqlit:asistentes.db";
 	private static final String JDBC_USER = "";
 	private static final String JDBC_PASS = "";
-	
+
 	public static ArrayList<AsistenteDto> obtenerTodos() throws SQLException {
-		PreparedStatement pst = crearSentencia("SELECT * FROM asistentes");
+		try (PreparedStatement pst = crearSentencia("SELECT * FROM asistentes"); ResultSet rs = pst.executeQuery()) {
+			ArrayList<AsistenteDto> asistentes = new ArrayList<>();
 
-		ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				AsistenteDto asistente = new AsistenteDto(rs.getLong("id"), rs.getString("nombre"),
+						rs.getString("apellidos"));
 
-		ArrayList<AsistenteDto> asistentes = new ArrayList<>();
+				asistentes.add(asistente);
+			}
 
-		while (rs.next()) {
-			AsistenteDto asistente = new AsistenteDto(rs.getLong("id"), rs.getString("nombre"),
-					rs.getString("apellidos"));
-
-			asistentes.add(asistente);
+			return asistentes;
+		} catch (SQLException e) {
+			System.out.println("No se ha podido pedir los asistentes");
+			throw e;
 		}
-
-		cerrarResultSet(pst, rs);
-		
-		return asistentes;
 	}
 
 	public static AsistenteDto obtenerPorId(Long id) throws SQLException {
-		PreparedStatement pst = crearSentencia("SELECT * FROM asistentes WHERE id=?");
-		
-		pst.setLong(1, id);
+		try (PreparedStatement pst = crearSentencia("SELECT * FROM asistentes WHERE id=?")) {
+			pst.setLong(1, id);
 
-		ResultSet rs = pst.executeQuery();
+			ResultSet rs = pst.executeQuery();
 
-		if (rs.next()) {
-			return new AsistenteDto(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"));
+			if (rs.next()) {
+				return new AsistenteDto(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"));
+			}
+
+			return null;
+		} catch (SQLException e) {
+			System.out.println("No se ha podido hacer la búsqueda por id");
+			throw e;
 		}
-		
-		cerrarResultSet(pst, rs);
-
-		return null;
 	}
 
 	public static void insertar(AsistenteDto asistenteDto) throws SQLException {
-		PreparedStatement pst = crearSentencia("INSERT INTO asistentes (nombre, apellidos) VALUES (?, ?)");
+		try (PreparedStatement pst = crearSentencia("INSERT INTO asistentes (nombre, apellidos) VALUES (?, ?)")) {
+			pst.setString(1, asistenteDto.nombre());
+			pst.setString(2, asistenteDto.apellidos());
 
-		pst.setString(1, asistenteDto.nombre());
-		pst.setString(2, asistenteDto.apellidos());
-		
-		pst.executeUpdate();
-		
-		cerrarSentencia(pst);
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("No se ha podido hacer la inserción");
+			throw e;
+		}
 	}
 
 	public static void modificar(AsistenteDto asistenteDto) throws SQLException {
-		PreparedStatement pst = crearSentencia("UPDATE asistentes SET nombre=?, apellidos=? WHERE id=?");
+		try (PreparedStatement pst = crearSentencia("UPDATE asistentes SET nombre=?, apellidos=? WHERE id=?")) {
+			pst.setString(1, asistenteDto.nombre());
+			pst.setString(2, asistenteDto.apellidos());
+			pst.setLong(3, asistenteDto.id());
 
-		pst.setString(1, asistenteDto.nombre());
-		pst.setString(2, asistenteDto.apellidos());
-		pst.setLong(3, asistenteDto.id());
-		
-		pst.executeUpdate();
-		
-		cerrarSentencia(pst);	
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("No se ha podido modificar el registro");
+			throw e;
+		}
 	}
 
 	public static void borrar(Long id) throws SQLException {
-		PreparedStatement pst = crearSentencia("DELETE FROM asistentes WHERE id=?");
+		try (PreparedStatement pst = crearSentencia("DELETE FROM asistentes WHERE id=?")) {
+			pst.setLong(1, id);
 
-		pst.setLong(1, id);
-		
-		pst.executeUpdate();
-		
-		cerrarSentencia(pst);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("No se ha podido borrar el registro");
+			throw e;
+		}
 	}
 
 	private static PreparedStatement crearSentencia(String sql) throws SQLException {
-		Connection con;
-		try {
-			con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+		try (Connection con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS)) {
+			return con.prepareStatement(sql);
 		} catch (SQLException e) {
-			System.out.println("Error al conectar con la base de datos");
+			System.out.println("No se ha podido conectar a la base de datos");
 			throw e;
 		}
-		return con.prepareStatement(sql);
-	}
-
-	private static void cerrarSentencia(PreparedStatement pst) throws SQLException {
-		pst.close();
-		
-		pst.getConnection().close();
-	}
-
-	private static void cerrarResultSet(PreparedStatement pst, ResultSet rs) throws SQLException {
-		rs.close();
-		
-		cerrarSentencia(pst);
 	}
 
 }

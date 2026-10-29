@@ -6,12 +6,8 @@ public class AsistenteConsola {
 	public static void main(String[] args) {
 //		AsistenteDao.insertar(new AsistenteDto(null, "Nuevo", "Nuevez'); DROP TABLE asistentes; -- "));
 		try {
-			try {
-				AsistenteDao.insertar(new AsistenteDto(null, null, "Nuevez"));
-				listado();
-			} catch (SQLException e) {
-				System.out.println("Error en la inserción. Continuamos.");
-			}
+			AsistenteDao.insertar(new AsistenteDto(null, null, "Nuevez"));
+			listado();
 
 			AsistenteDao.modificar(new AsistenteDto(2L, "Modificado", "Modificadez"));
 			listado();
