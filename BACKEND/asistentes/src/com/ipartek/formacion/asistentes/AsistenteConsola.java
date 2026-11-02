@@ -68,7 +68,14 @@ public class AsistenteConsola {
 
 		try {
 			id = Consola.pedirLong("Dime el id: ");
-			IO.println(AsistenteDao.obtenerPorId(id));
+
+			AsistenteDto asistente = AsistenteDao.obtenerPorId(id);
+
+			if (asistente != null) {
+				IO.println(asistente);
+			} else {
+				IO.println("No se ha encontrado el asistente con el id " + id);
+			}
 		} catch (SQLException e) {
 			IO.println("No se ha podido obtener el asistente con el id " + id);
 		}
@@ -76,8 +83,8 @@ public class AsistenteConsola {
 
 	private static void insertar() {
 		try {
-			String nombre = IO.readln("Nombre: ");
-			String apellidos = IO.readln("Apellidos: ");
+			String nombre = Consola.pedirString("Nombre: ");
+			String apellidos = Consola.pedirString("Apellidos: ");
 
 			AsistenteDto asistente = new AsistenteDto(null, nombre, apellidos);
 
@@ -90,8 +97,8 @@ public class AsistenteConsola {
 	private static void modificar() {
 		try {
 			Long id = Consola.pedirLong("Id: ");
-			String nombre = IO.readln("Nombre: ");
-			String apellidos = IO.readln("Apellidos: ");
+			String nombre = Consola.pedirString("Nombre: ");
+			String apellidos = Consola.pedirString("Apellidos: ");
 
 			AsistenteDto asistente = new AsistenteDto(id, nombre, apellidos);
 

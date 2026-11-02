@@ -1,6 +1,24 @@
 package com.ipartek.formacion.bibliotecas;
 
 public class Consola {
+	public static String pedirString(String mensaje) {
+		boolean correcto = false;
+		
+		String texto;
+		
+		do {
+			texto = IO.readln(mensaje);
+			
+			if (texto.isBlank()) {
+				IO.println("No se admite texto en blanco");
+			} else {
+				correcto = true;
+			}
+		} while (!correcto);
+		
+		return texto.trim();
+	}
+	
 	public static Integer pedirInt(String mensaje) {
 		boolean correcto = false;
 		
