@@ -9,9 +9,9 @@ public class Producto {
 	public static final BigDecimal IVA_PORCENTAJE = new BigDecimal("0.21");
 
 	// VARIABLES DE INSTANCIA
-	private Long id;
-	private String nombre;
-	private BigDecimal precio;
+	protected Long id;
+	protected String nombre;
+	protected BigDecimal precio;
 
 	// CONSTRUCTORES
 	public Producto(Long id, String nombre, BigDecimal precio) {
