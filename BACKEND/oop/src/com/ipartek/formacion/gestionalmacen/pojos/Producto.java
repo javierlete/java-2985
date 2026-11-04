@@ -85,11 +85,13 @@ public class Producto {
 		precio = precio.multiply(tantoPorCien.divide(new BigDecimal(100)).add(BigDecimal.ONE));
 	}
 
+	// HASHCODE
 	@Override
 	public int hashCode() {
 		return Objects.hash(fechaCaducidad, id, nombre, precio);
 	}
 
+	// EQUALS
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -103,6 +105,7 @@ public class Producto {
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(precio, other.precio);
 	}
 
+	// TOSTRING
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", fechaCaducidad=" + fechaCaducidad + ", precio=" + precio
