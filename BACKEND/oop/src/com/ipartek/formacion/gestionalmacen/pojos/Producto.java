@@ -1,7 +1,6 @@
 package com.ipartek.formacion.gestionalmacen.pojos;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Producto {
@@ -12,31 +11,25 @@ public class Producto {
 	// VARIABLES DE INSTANCIA
 	private Long id;
 	private String nombre;
-	private LocalDate fechaCaducidad;
 	private BigDecimal precio;
 
 	// CONSTRUCTORES
-	public Producto(Long id, String nombre, LocalDate fechaCaducidad, BigDecimal precio) {
+	public Producto(Long id, String nombre, BigDecimal precio) {
 		setId(id);
 		setNombre(nombre);
-		setFechaCaducidad(fechaCaducidad);
 		setPrecio(precio);
 	}
 
-	public Producto(Long id, String nombre, BigDecimal precio) {
-		this(id, nombre, null, precio);
-	}
-
 	public Producto(Long id, BigDecimal precio, String nombre) {
-		this(id, nombre, null, precio);
+		this(id, nombre, precio);
 	}
 
 	public Producto(String nombre, BigDecimal precio) {
-		this(null, nombre, null, precio);
+		this(null, nombre, precio);
 	}
 
 	public Producto() {
-		this(null, SIN_NOMBRE, null, null);
+		this(null, SIN_NOMBRE, null);
 	}
 
 	// GETTERS Y SETTERS
@@ -60,14 +53,6 @@ public class Producto {
 		return nombre;
 	}
 
-	public LocalDate getFechaCaducidad() {
-		return fechaCaducidad;
-	}
-
-	public void setFechaCaducidad(LocalDate fechaCaducidad) {
-		this.fechaCaducidad = fechaCaducidad;
-	}
-
 	public BigDecimal getPrecio() {
 		return precio;
 	}
@@ -85,13 +70,11 @@ public class Producto {
 		precio = precio.multiply(tantoPorCien.divide(new BigDecimal(100)).add(BigDecimal.ONE));
 	}
 
-	// HASHCODE
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaCaducidad, id, nombre, precio);
+		return Objects.hash(id, nombre, precio);
 	}
 
-	// EQUALS
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -101,15 +84,13 @@ public class Producto {
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		return Objects.equals(fechaCaducidad, other.fechaCaducidad) && Objects.equals(id, other.id)
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(precio, other.precio);
+		return Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(precio, other.precio);
 	}
 
-	// TOSTRING
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", fechaCaducidad=" + fechaCaducidad + ", precio=" + precio
-				+ "]";
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
 	}
 
 }
