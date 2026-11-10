@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.amazonia.accesodatos.impl.DaoProductoSqlite"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="com.ipartek.formacion.amazonia.entidades.Producto"%>
 <%@page import="com.ipartek.formacion.amazonia.accesodatos.DaoProducto"%>
@@ -7,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-DaoProducto dao = new DaoProductoArrayList();
+DaoProducto dao = new DaoProductoSqlite();
 
 dao.insertar(new Producto(1L, "Prueba", new BigDecimal("1234")));
 dao.insertar(new Producto(2L, "Prueba2", new BigDecimal("21234")));
