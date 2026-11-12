@@ -40,47 +40,54 @@ public class PlatoRestServlet extends HttpServlet {
 
 			System.out.println(id);
 
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-				PreparedStatement pst = con.prepareStatement("SELECT * FROM platos WHERE id=?");
-				
-				pst.setLong(1, id);
-				
-				ResultSet rs = pst.executeQuery();
-				PrintWriter out = response.getWriter();
-
-				if (rs.next()) {
-					out.append(String.format("""
-							{ "id": %s, "nombre": "%s", "precio": %s, "descripcion": "%s" }""", rs.getLong("id"), rs.getString("nombre"),
-							rs.getBigDecimal("precio"), rs.getString("descripcion")));
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			obtenerPorId(response, id);
 		} else {
+			obtenerTodos(response);
+		}
+	}
 
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-				PreparedStatement pst = con.prepareStatement("SELECT * FROM platos");
-				ResultSet rs = pst.executeQuery();
-				PrintWriter out = response.getWriter();
+	private void obtenerTodos(HttpServletResponse response) throws IOException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+			PreparedStatement pst = con.prepareStatement("SELECT * FROM platos");
+			ResultSet rs = pst.executeQuery();
+			PrintWriter out = response.getWriter();
 
-				StringBuffer sb = new StringBuffer();
+			StringBuffer sb = new StringBuffer();
 
-				while (rs.next()) {
-					sb.append(String.format("""
-							{ "id": %s, "nombre": "%s", "precio": %s },""", rs.getLong("id"), rs.getString("nombre"),
-							rs.getBigDecimal("precio")));
-				}
-
-				out.append("[");
-				out.append(sb.substring(0, sb.length() - 1));
-				out.append("]");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			while (rs.next()) {
+				sb.append(String.format("""
+						{ "id": %s, "nombre": "%s", "precio": %s },""", rs.getLong("id"), rs.getString("nombre"),
+						rs.getBigDecimal("precio")));
 			}
+
+			out.append("[");
+			out.append(sb.substring(0, sb.length() - 1));
+			out.append("]");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void obtenerPorId(HttpServletResponse response, Long id) throws IOException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+			PreparedStatement pst = con.prepareStatement("SELECT * FROM platos WHERE id=?");
+			
+			pst.setLong(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			PrintWriter out = response.getWriter();
+
+			if (rs.next()) {
+				out.append(String.format("""
+						{ "id": %s, "nombre": "%s", "precio": %s, "descripcion": "%s" }""", rs.getLong("id"), rs.getString("nombre"),
+						rs.getBigDecimal("precio"), rs.getString("descripcion")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
