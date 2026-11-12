@@ -1,12 +1,15 @@
 package com.ipartek.formacion.iparrest.servlets.rest;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.ipartek.formacion.iparrest.entidades.Plato;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,6 +20,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/api/v1/platos/*")
 public class PlatoRestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final Gson GSON = new Gson();
 
 	static {
 		try {
@@ -40,54 +45,55 @@ public class PlatoRestServlet extends HttpServlet {
 
 			System.out.println(id);
 
-			obtenerPorId(response, id);
+			Plato plato = obtenerPorId(id);
+			String json = GSON.toJson(plato);
+			
+			response.getWriter().append(json);
 		} else {
-			obtenerTodos(response);
+			ArrayList<Plato> platos = obtenerTodos();
+			String json = GSON.toJson(platos);
+			
+			response.getWriter().append(json);
 		}
 	}
 
-	private void obtenerTodos(HttpServletResponse response) throws IOException {
+	private ArrayList<Plato> obtenerTodos() {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
 			PreparedStatement pst = con.prepareStatement("SELECT * FROM platos");
 			ResultSet rs = pst.executeQuery();
-			PrintWriter out = response.getWriter();
 
-			StringBuffer sb = new StringBuffer();
+			ArrayList<Plato> platos = new ArrayList<>();
 
 			while (rs.next()) {
-				sb.append(String.format("""
-						{ "id": %s, "nombre": "%s", "precio": %s },""", rs.getLong("id"), rs.getString("nombre"),
-						rs.getBigDecimal("precio")));
+				Plato plato = new Plato(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"), null);
+
+				platos.add(plato);
 			}
 
-			out.append("[");
-			out.append(sb.substring(0, sb.length() - 1));
-			out.append("]");
+			return platos;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 
-	private void obtenerPorId(HttpServletResponse response, Long id) throws IOException {
+	private Plato obtenerPorId(Long id) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
 			PreparedStatement pst = con.prepareStatement("SELECT * FROM platos WHERE id=?");
-			
+
 			pst.setLong(1, id);
-			
+
 			ResultSet rs = pst.executeQuery();
-			PrintWriter out = response.getWriter();
 
 			if (rs.next()) {
-				out.append(String.format("""
-						{ "id": %s, "nombre": "%s", "precio": %s, "descripcion": "%s" }""", rs.getLong("id"), rs.getString("nombre"),
-						rs.getBigDecimal("precio"), rs.getString("descripcion")));
+				return new Plato(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"),
+						rs.getString("descripcion"));
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 
