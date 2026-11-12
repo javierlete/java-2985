@@ -1,0 +1,5 @@
+Para poder usar la base de datos: iparrest.db
+
+Hace falta copiarla al directorio del eclipse que se
+está ejecutando para probar la aplicación.
+ 
