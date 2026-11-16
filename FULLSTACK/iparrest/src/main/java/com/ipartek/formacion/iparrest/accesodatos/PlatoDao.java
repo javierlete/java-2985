@@ -11,10 +11,9 @@ import com.ipartek.formacion.iparrest.entidades.Plato;
 
 public class PlatoDao {
 	public static ArrayList<Plato> obtenerTodos() {
-		try {
-			Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-			PreparedStatement pst = con.prepareStatement("SELECT * FROM platos");
-			ResultSet rs = pst.executeQuery();
+		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+				PreparedStatement pst = con.prepareStatement("SELECT * FROM platos");
+				ResultSet rs = pst.executeQuery();) {
 
 			ArrayList<Plato> platos = new ArrayList<>();
 
@@ -31,9 +30,8 @@ public class PlatoDao {
 	}
 
 	public static Plato obtenerPorId(Long id) {
-		try {
-			Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-			PreparedStatement pst = con.prepareStatement("SELECT * FROM platos WHERE id=?");
+		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+				PreparedStatement pst = con.prepareStatement("SELECT * FROM platos WHERE id=?");) {
 
 			pst.setLong(1, id);
 
@@ -45,6 +43,21 @@ public class PlatoDao {
 			} else {
 				return null;
 			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
+	public static void insertar(Plato plato) {
+		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+				PreparedStatement pst = con
+						.prepareStatement("INSERT INTO platos (nombre, precio, descripcion) VALUES (?,?,?)");) {
+
+			pst.setString(1, plato.getNombre());
+			pst.setBigDecimal(2, plato.getPrecio());
+			pst.setString(3, plato.getDescripcion());
+
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
