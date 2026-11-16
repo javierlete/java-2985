@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ipartek.formacion.iparrest.entidades.Plato;
@@ -48,16 +49,25 @@ public class PlatoDao {
 		}
 	}
 
-	public static void insertar(Plato plato) {
+	public static Plato insertar(Plato plato) {
 		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-				PreparedStatement pst = con
-						.prepareStatement("INSERT INTO platos (nombre, precio, descripcion) VALUES (?,?,?)");) {
+				PreparedStatement pst = con.prepareStatement(
+						"INSERT INTO platos (nombre, precio, descripcion) VALUES (?,?,?)",
+						Statement.RETURN_GENERATED_KEYS);) {
 
 			pst.setString(1, plato.getNombre());
 			pst.setBigDecimal(2, plato.getPrecio());
 			pst.setString(3, plato.getDescripcion());
 
 			pst.executeUpdate();
+			
+			ResultSet rs = pst.getGeneratedKeys();
+			
+			rs.next();
+			
+			plato.setId(rs.getLong(1));
+			
+			return plato;
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

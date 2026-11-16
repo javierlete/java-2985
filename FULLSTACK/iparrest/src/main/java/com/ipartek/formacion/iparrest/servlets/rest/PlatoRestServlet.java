@@ -55,15 +55,16 @@ public class PlatoRestServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("application/json");
 //		String json = request.getReader().readAllAsString();
 		
 		Plato plato = GSON.fromJson(request.getReader(), Plato.class);
 		
 		System.out.println(plato);
 		
-		PlatoDao.insertar(plato);
+		Plato platoInsertado = PlatoDao.insertar(plato);
 		
-		response.getWriter().append(GSON.toJson(plato));
+		response.getWriter().append(GSON.toJson(platoInsertado));
 		
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
