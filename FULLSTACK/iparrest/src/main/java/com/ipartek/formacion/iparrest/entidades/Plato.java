@@ -17,6 +17,9 @@ public class Plato {
 		this.descripcion = descripcion;
 	}
 
+	public Plato() {
+	}
+
 	public Long getId() {
 		return id;
 	}
