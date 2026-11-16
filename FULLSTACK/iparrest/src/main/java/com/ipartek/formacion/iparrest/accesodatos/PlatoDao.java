@@ -11,6 +11,14 @@ import java.util.ArrayList;
 import com.ipartek.formacion.iparrest.entidades.Plato;
 
 public class PlatoDao {
+	static {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			System.out.println("ERROR AL CARGAR EL DRIVER DE SQLITE");
+		}
+	}
+
 	public static ArrayList<Plato> obtenerTodos() {
 		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
 				PreparedStatement pst = con.prepareStatement("SELECT * FROM platos");
@@ -60,14 +68,45 @@ public class PlatoDao {
 			pst.setString(3, plato.getDescripcion());
 
 			pst.executeUpdate();
-			
+
 			ResultSet rs = pst.getGeneratedKeys();
-			
+
 			rs.next();
-			
+
 			plato.setId(rs.getLong(1));
-			
+
 			return plato;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
+	public static Plato modificar(Plato plato) {
+		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+				PreparedStatement pst = con.prepareStatement(
+						"UPDATE platos SET nombre=?, precio=?, descripcion=? WHERE id=?");) {
+
+			pst.setString(1, plato.getNombre());
+			pst.setBigDecimal(2, plato.getPrecio());
+			pst.setString(3, plato.getDescripcion());
+			pst.setLong(4, plato.getId());
+
+			pst.executeUpdate();
+
+			return plato;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
+	public static void borrar(Long id) {
+		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
+				PreparedStatement pst = con.prepareStatement(
+						"DELETE FROM platos WHERE id=?");) {
+
+			pst.setLong(1, id);
+
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

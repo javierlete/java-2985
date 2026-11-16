@@ -19,14 +19,6 @@ public class PlatoRestServlet extends HttpServlet {
 
 	private static final Gson GSON = new Gson();
 
-	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e) {
-			System.out.println("ERROR AL CARGAR EL DRIVER DE SQLITE");
-		}
-	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json");
