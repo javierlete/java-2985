@@ -1,8 +1,8 @@
 package com.ipartek.formacion.iparrest.jersey.rest;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import com.ipartek.formacion.iparrest.accesodatos.PlatoDao;
+import com.ipartek.formacion.iparrest.accesodatos.PlatoDaoJpa;
 import com.ipartek.formacion.iparrest.entidades.Plato;
 
 import jakarta.ws.rs.DELETE;
@@ -18,14 +18,14 @@ import jakarta.ws.rs.core.Response.Status;
 @Path("platos")
 public class PlatosRest {
 	@GET
-	public ArrayList<Plato> get() {
-		return PlatoDao.obtenerTodos();
+	public List<Plato> get() {
+		return PlatoDaoJpa.obtenerTodos();
 	}
 
 	@GET
 	@Path("{id}")
 	public Plato getUno(@PathParam("id") Long id) {
-		Plato plato = PlatoDao.obtenerPorId(id);
+		Plato plato = PlatoDaoJpa.obtenerPorId(id);
 
 		if (plato == null) {
 			throw new NotFoundException();
@@ -36,19 +36,19 @@ public class PlatosRest {
 
 	@POST
 	public Response post(Plato plato) {
-		return Response.status(Status.CREATED).entity(PlatoDao.insertar(plato)).build();
+		return Response.status(Status.CREATED).entity(PlatoDaoJpa.insertar(plato)).build();
 	}
 
 	@PUT
 	@Path("{id}")
 	public Plato put(Plato plato, @PathParam("id") Long id) {
-		return PlatoDao.modificar(plato);
+		return PlatoDaoJpa.modificar(plato);
 	}
 
 	@DELETE
 	@Path("{id}")
 	public void delete(@PathParam("id") Long id) {
-		PlatoDao.borrar(id);
+		PlatoDaoJpa.borrar(id);
 	}
 
 }
