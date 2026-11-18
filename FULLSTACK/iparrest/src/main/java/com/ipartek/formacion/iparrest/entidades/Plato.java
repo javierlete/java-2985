@@ -8,6 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "platos")
@@ -15,8 +19,15 @@ public class Plato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotBlank
+	@Size(max = 50)
 	private String nombre;
-	private BigDecimal precio;
+	
+	@NotNull
+	@PositiveOrZero
+	private BigDecimal precio;	
+
 	private String descripcion;
 
 	public Plato(Long id, String nombre, BigDecimal precio, String descripcion) {
