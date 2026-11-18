@@ -18,7 +18,7 @@
 			<!-- Automatically export the schema -->
 			<property
 				name="jakarta.persistence.schema-generation.database.action"
-				value="create" />
+				value="create-drop" />
 
 			<!-- Echo all executed SQL to console -->
 			<property name="hibernate.show_sql" value="true" />
