@@ -16,9 +16,13 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import lombok.extern.java.Log;
 
+@Log
 @Path("platos")
 public class PlatosRest {
+//	private static final Logger log = Logger.getLogger(PlatosRest.class.getName());
+	
 	@GET
 	public List<Plato> get() {
 		return PlatoDaoJpa.obtenerTodos();
@@ -41,6 +45,7 @@ public class PlatosRest {
 		Map<String, String> errores = ValidacionHelper.validar(plato);
 
 		if(!errores.isEmpty()) {
+			log.warning("Plato con errores " + plato);
 			return Response.status(Status.BAD_REQUEST).entity(errores).build();
 		}
 		
@@ -65,6 +70,8 @@ public class PlatosRest {
 	@Path("{id}")
 	public void delete(@PathParam("id") Long id) {
 		PlatoDaoJpa.borrar(id);
+
+		log.info("Se ha borrado el plato " + id);
 	}
 
 }

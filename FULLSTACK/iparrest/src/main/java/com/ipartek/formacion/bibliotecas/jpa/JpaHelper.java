@@ -29,7 +29,7 @@ public class JpaHelper {
 				t.rollback();
 			}
 
-			throw e;
+			throw new AccesoDatosException("No se ha podido hacer la operación JPA", e);
 		} finally {
 			em.close();
 		}

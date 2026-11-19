@@ -27,7 +27,8 @@ public class PlatoDao {
 			ArrayList<Plato> platos = new ArrayList<>();
 
 			while (rs.next()) {
-				Plato plato = new Plato(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"), null);
+				Plato plato = Plato.builder().id(rs.getLong("id")).nombre(rs.getString("nombre"))
+						.precio(rs.getBigDecimal("precio")).build();
 
 				platos.add(plato);
 			}
@@ -47,8 +48,8 @@ public class PlatoDao {
 			ResultSet rs = pst.executeQuery();
 
 			if (rs.next()) {
-				return new Plato(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"),
-						rs.getString("descripcion"));
+				return Plato.builder().id(rs.getLong("id")).nombre(rs.getString("nombre"))
+						.precio(rs.getBigDecimal("precio")).descripcion(rs.getString("descripcion")).build();
 			} else {
 				return null;
 			}
@@ -83,8 +84,8 @@ public class PlatoDao {
 
 	public static Plato modificar(Plato plato) {
 		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-				PreparedStatement pst = con.prepareStatement(
-						"UPDATE platos SET nombre=?, precio=?, descripcion=? WHERE id=?");) {
+				PreparedStatement pst = con
+						.prepareStatement("UPDATE platos SET nombre=?, precio=?, descripcion=? WHERE id=?");) {
 
 			pst.setString(1, plato.getNombre());
 			pst.setBigDecimal(2, plato.getPrecio());
@@ -101,8 +102,7 @@ public class PlatoDao {
 
 	public static void borrar(Long id) {
 		try (Connection con = DriverManager.getConnection("jdbc:sqlite:iparrest.db");
-				PreparedStatement pst = con.prepareStatement(
-						"DELETE FROM platos WHERE id=?");) {
+				PreparedStatement pst = con.prepareStatement("DELETE FROM platos WHERE id=?");) {
 
 			pst.setLong(1, id);
 
