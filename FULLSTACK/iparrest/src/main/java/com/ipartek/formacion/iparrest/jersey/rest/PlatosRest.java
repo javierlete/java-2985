@@ -1,7 +1,9 @@
 package com.ipartek.formacion.iparrest.jersey.rest;
 
 import java.util.List;
+import java.util.Map;
 
+import com.ipartek.formacion.bibliotecas.validacion.ValidacionHelper;
 import com.ipartek.formacion.iparrest.accesodatos.PlatoDaoJpa;
 import com.ipartek.formacion.iparrest.entidades.Plato;
 
@@ -36,13 +38,27 @@ public class PlatosRest {
 
 	@POST
 	public Response post(Plato plato) {
-		return Response.status(Status.CREATED).entity(PlatoDaoJpa.insertar(plato)).build();
+		Map<String, String> errores = ValidacionHelper.validar(plato);
+
+		if(!errores.isEmpty()) {
+			return Response.status(Status.BAD_REQUEST).entity(errores).build();
+		}
+		
+		Plato platoInsertado = PlatoDaoJpa.insertar(plato);
+		
+		return Response.status(Status.CREATED).entity(platoInsertado).build();
 	}
 
 	@PUT
 	@Path("{id}")
-	public Plato put(Plato plato, @PathParam("id") Long id) {
-		return PlatoDaoJpa.modificar(plato);
+	public Response put(Plato plato, @PathParam("id") Long id) {
+		Map<String, String> errores = ValidacionHelper.validar(plato);
+
+		if(!errores.isEmpty()) {
+			return Response.status(Status.BAD_REQUEST).entity(errores).build();
+		}
+		
+		return Response.ok().entity(PlatoDaoJpa.modificar(plato)).build();
 	}
 
 	@DELETE
