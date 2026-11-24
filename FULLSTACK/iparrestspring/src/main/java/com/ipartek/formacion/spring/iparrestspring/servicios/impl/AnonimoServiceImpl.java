@@ -1,5 +1,7 @@
 package com.ipartek.formacion.spring.iparrestspring.servicios.impl;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.spring.iparrestspring.entidades.Plato;
@@ -21,6 +23,13 @@ public class AnonimoServiceImpl implements AnonimoService {
 		log.info("Se ha pedido un listado de todos los platos");
 		
 		return platoRepository.findAll();
+	}
+
+	@Override
+	public Optional<Plato> platoPorId(Long id) {
+		log.info("Se ha pedido el plato " + id);
+		
+		return platoRepository.findById(id);
 	}
 
 }
