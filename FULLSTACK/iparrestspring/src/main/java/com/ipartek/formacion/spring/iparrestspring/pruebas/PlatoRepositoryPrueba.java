@@ -24,6 +24,10 @@ public class PlatoRepositoryPrueba implements CommandLineRunner {
 		for (Plato plato : repo.findAll()) {
 			System.out.println(plato);
 		}
+		
+		System.out.println(repo.findByNombreContains("a"));
+		
+		System.out.println(repo.nombresPlatosDestacados());
 	}
 
 }
