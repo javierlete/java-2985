@@ -32,4 +32,11 @@ public class AdminServiceImpl implements AdminService {
 		return platoInsertado;
 	}
 
+	@Override
+	public void borrarPlato(Long id) {
+		log.info("Se va a borrar el plato " + id);
+		
+		platoRepository.deleteById(id);
+	}
+
 }
