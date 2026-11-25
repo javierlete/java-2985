@@ -24,47 +24,47 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 @RestController
-@RequestMapping("/api/v2")
-public class IndexRestController {
+@RequestMapping("/api/v2/platos")
+public class PlatoRestController {
 	private final AnonimoService anonimoService;
 	private final AdminService adminService;
-	
-	@GetMapping("platos")
+
+	@GetMapping
 	public Iterable<Plato> get() {
 		return anonimoService.listadoPlatos();
 	}
-	
-	@GetMapping("platos/{id}")
-	public Plato getPorId(@PathVariable Long id) {
+
+	@GetMapping("{id}")
+	public Plato get(@PathVariable Long id) {
 		Optional<Plato> plato = anonimoService.platoPorId(id);
-		
-		if(plato.isEmpty()) {
+
+		if (plato.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		
+
 		return plato.get();
 	}
-	
-	@PostMapping("platos")
+
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Plato post(@RequestBody Plato plato) {
 		return adminService.crearPlato(plato);
 	}
-	
-	@PutMapping("platos/{id}")
+
+	@PutMapping("{id}")
 	public Plato put(@RequestBody Plato plato, @PathVariable Long id) {
 		if (id != plato.getId()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		try {
 			return adminService.modificarPlato(plato);
 		} catch (ServiciosException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@DeleteMapping("platos/{id}")
+
+	@DeleteMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		adminService.borrarPlato(id);
