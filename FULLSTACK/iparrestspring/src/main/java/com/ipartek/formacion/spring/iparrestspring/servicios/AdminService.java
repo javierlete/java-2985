@@ -6,6 +6,8 @@ public interface AdminService {
 
 	Plato crearPlato(Plato plato);
 
+	Plato modificarPlato(Plato plato);
+
 	void borrarPlato(Long id);
 
 }

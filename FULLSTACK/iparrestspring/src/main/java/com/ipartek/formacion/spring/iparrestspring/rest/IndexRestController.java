@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.ipartek.formacion.spring.iparrestspring.entidades.Plato;
 import com.ipartek.formacion.spring.iparrestspring.servicios.AdminService;
 import com.ipartek.formacion.spring.iparrestspring.servicios.AnonimoService;
+import com.ipartek.formacion.spring.iparrestspring.servicios.ServiciosException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -47,6 +49,19 @@ public class IndexRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Plato post(@RequestBody Plato plato) {
 		return adminService.crearPlato(plato);
+	}
+	
+	@PutMapping("platos/{id}")
+	public Plato put(@RequestBody Plato plato, @PathVariable Long id) {
+		if (id != plato.getId()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		
+		try {
+			return adminService.modificarPlato(plato);
+		} catch (ServiciosException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@DeleteMapping("platos/{id}")

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.ipartek.formacion.spring.iparrestspring.entidades.Plato;
 import com.ipartek.formacion.spring.iparrestspring.repositorios.PlatoRepository;
 import com.ipartek.formacion.spring.iparrestspring.servicios.AdminService;
+import com.ipartek.formacion.spring.iparrestspring.servicios.ServiciosException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,20 @@ public class AdminServiceImpl implements AdminService {
 		log.info("Se ha creado este plato: " + platoInsertado);
 		
 		return platoInsertado;
+	}
+
+	@Override
+	public Plato modificarPlato(Plato plato) {
+		if (plato.getId() == null) {
+			log.warn("Se ha recibido un plato sin id");
+			throw new ServiciosException("Se ha recibido un plato sin id");
+		}
+		
+		Plato platoModificado = platoRepository.save(plato);
+		
+		log.info("Se ha modificado este plato: " + platoModificado);
+		
+		return platoModificado;
 	}
 
 	@Override
